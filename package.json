@@ -1,0 +1,38 @@
+{
+  "name": "elm-template",
+  "devDependencies": {
+    "eslint": "7.32.0",
+    "husky": "7.0.2",
+    "jest": "27.1.0",
+    "lerna": "^4.0.0",
+    "lint-staged": "11.1.2",
+    "oc": "0.48.23",
+    "prettier-eslint-cli": "5.0.1"
+  },
+  "scripts": {
+    "postinstall": "lerna bootstrap",
+    "coverage": "codecov",
+    "clean": "lerna clean",
+    "dev": "jest --watch",
+    "updated": "lerna updated",
+    "lint": "eslint packages",
+    "test": "jest",
+    "publish": "lerna publish --exact",
+    "precommit": "lint-staged"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "roots": [
+      "packages"
+    ],
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "packages/**/*.js",
+      "!packages/coverage/**/*",
+      "!node_modules/**",
+      "!packages/**/scaffold/**/*",
+      "!packages/**/utils/**/*"
+    ]
+  }
+}

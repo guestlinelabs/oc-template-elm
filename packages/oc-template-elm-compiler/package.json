@@ -1,0 +1,85 @@
+{
+  "name": "oc-template-elm-compiler",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/guestlinelabs/oc-template-elm.git"
+  },
+  "bugs": {
+    "url": "https://github.com/guestlinelabs/oc-template-elm/issues"
+  },
+  "homepage": "https://github.com/guestlinelabs/oc-template-elm#readme",
+  "keywords": [
+    "oc",
+    "opencomponents",
+    "elm",
+    "oc-template"
+  ],
+  "author": {
+    "name": "Ricardo Devis Agullo",
+    "email": "mkredz@gmail.com"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@babel/core": "7.12.3",
+    "@babel/plugin-proposal-object-rest-spread": "7.8.3",
+    "@babel/preset-typescript": "7.8.3",
+    "@typescript-eslint/eslint-plugin": "^4.5.0",
+    "@typescript-eslint/parser": "^4.5.0",
+    "async": "^2.4.1",
+    "autoprefixer": "^8.5.0",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.2.2",
+    "babel-plugin-named-asset-import": "^0.3.7",
+    "babel-preset-react-app": "^10.0.0",
+    "chalk": "^3.0.0",
+    "css-loader": "4.3.0",
+    "elm": "^0.19.1-5",
+    "elm-webpack-loader": "^8.0.0",
+    "eslint": "^7.32.0",
+    "eslint-config-react-app": "^6.0.0",
+    "eslint-plugin-react": "^7.25.1",
+    "eslint-webpack-plugin": "^2.5.2",
+    "fork-ts-checker-webpack-plugin": "^4.1.6",
+    "fs-extra": "^9.0.1",
+    "immer": "8.0.4",
+    "infinite-loop-loader": "^1.0.3",
+    "loader-utils": "^2.0.0",
+    "lodash": "^4.17.4",
+    "memory-fs": "^0.4.1",
+    "node-dir": "0.1.17",
+    "oc-external-dependencies-handler": "1.0.6",
+    "oc-generic-template-compiler": "2.0.4",
+    "oc-get-unix-utc-timestamp": "1.0.2",
+    "oc-hash-builder": "1.0.2",
+    "oc-statics-compiler": "2.0.10",
+    "oc-template-elm": "0.0.1",
+    "oc-templates-messages": "1.0.2",
+    "oc-view-wrapper": "1.0.3",
+    "resolve": "1.18.1",
+    "sass-loader": "^10.0.5",
+    "source-map-loader": "^1.1.2",
+    "strip-ansi": "^6.0.0",
+    "style-loader": "^1.1.1",
+    "terser-webpack-plugin": "4.2.3",
+    "text-table": "^0.2.0",
+    "ts-loader": "^6.2.0",
+    "ts-pnp": "1.2.0",
+    "typescript": "^4.4.2",
+    "webpack": "4.44.2"
+  },
+  "files": [
+    "index.js",
+    "lib",
+    "utils",
+    "scaffold",
+    "README.md",
+    "LICENSE"
+  ],
+  "devDependencies": {
+    "prettier": "^2.3.2",
+    "prettier-config-guestline": "^1.0.1"
+  }
+}
