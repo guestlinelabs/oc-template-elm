@@ -13,8 +13,7 @@ function verifyTypeScriptSetup(componentPath) {
   const paths = {
     appTsConfig: path.resolve(componentPath, 'tsconfig.json'),
     yarnLockFile: path.resolve(componentPath, 'yarn.lock'),
-    appNodeModules: path.resolve(componentPath, 'node_modules'),
-    appTypeDeclarations: path.resolve(componentPath, 'src', 'oc-app.d.ts')
+    appNodeModules: path.resolve(componentPath, 'node_modules')
   };
   let firstTimeSetup = false;
 
@@ -198,14 +197,6 @@ function verifyTypeScriptSetup(componentPath) {
       console.warn();
     }
     writeJson(paths.appTsConfig, appTsConfig);
-  }
-
-  // Reference `oc-template-typescript-react-compiler` types
-  if (!fs.existsSync(paths.appTypeDeclarations)) {
-    fs.writeFileSync(
-      paths.appTypeDeclarations,
-      `/// <reference types="oc-template-typescript-react" />${os.EOL}`
-    );
   }
 }
 

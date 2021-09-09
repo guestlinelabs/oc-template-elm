@@ -1,16 +1,16 @@
 {
   "name": "oc-template-elm",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "OC-Template-Elm",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/guestlinelabs/oc-template-typescript-react.git"
+    "url": "https://github.com/guestlinelabs/oc-template-elm.git"
   },
   "bugs": {
-    "url": "https://github.com/guestlinelabs/oc-template-typescript-react/issues"
+    "url": "https://github.com/guestlinelabs/oc-template-elm/issues"
   },
-  "homepage": "https://github.com/guestlinelabs/oc-template-typescript-react#readme",
+  "homepage": "https://github.com/guestlinelabs/oc-template-elm#readme",
   "keywords": [
     "oc",
     "opencomponents",

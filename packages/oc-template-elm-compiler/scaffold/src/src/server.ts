@@ -1,4 +1,3 @@
-import { Context } from 'oc-template-typescript-react-compiler';
 import { AdditionalData, ClientProps, OcParameters } from './types';
 
 const database = [
@@ -11,7 +10,7 @@ async function getUser(userId: number) {
 }
 
 export async function data(
-  context: Context<OcParameters>,
+  context: any,
   callback: (error: any, data: ClientProps | AdditionalData) => void
 ) {
   const { userId } = context.params;
