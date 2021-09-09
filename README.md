@@ -10,7 +10,7 @@
 
 | Name                                                             | Version                                                                                                                     |
 | ---------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| [`oc-template-elm`](/packages/oc-template-elm)                   | [![npm version](https://badge.fury.io/js/oc-elm-react.svg)](http://badge.fury.io/js/oc-template-elm)                        |
+| [`oc-template-elm`](/packages/oc-template-elm)                   | [![npm version](https://badge.fury.io/js/oc-template-elm.svg)](http://badge.fury.io/js/oc-template-elm)                     |
 | [`oc-template-elm-compiler`](/packages/oc-template-elm-compiler) | [![npm version](https://badge.fury.io/js/oc-template-elm-compiler.svg)](http://badge.fury.io/js/oc-template-typescript-elm) |
 
 ## Usage:
@@ -22,3 +22,9 @@ $ npx oc init my-awesome-oc oc-template-elm
 $ cd my-awesome-oc
 $ npm install
 ```
+
+## Missing features
+
+- Server side rendering
+- Having JS as the entry point (for custom ports)
+- Custom port for getting data from OC server
