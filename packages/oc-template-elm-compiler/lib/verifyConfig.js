@@ -82,10 +82,6 @@ function verifyTypeScriptSetup(componentPath) {
     },
     resolveJsonModule: { value: true, reason: 'to match webpack loader' },
     isolatedModules: { value: true, reason: 'implementation limitation' },
-    jsx: {
-      parsedValue: ts.JsxEmit.React,
-      suggested: 'react'
-    },
     paths: { value: undefined, reason: 'aliased imports are not supported' }
   };
 
