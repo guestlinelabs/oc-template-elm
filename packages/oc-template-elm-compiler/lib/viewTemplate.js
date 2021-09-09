@@ -25,7 +25,7 @@ const viewTemplate = ({
         'function(ElmComponent) {' +
           'var targetNode = document.getElementById("' + templateId + '");' +
           'targetNode.setAttribute("id","");' +
-          'ElmComponent.Elm.Main.init({ node: targetNode, flags:' + flags + '});' +
+          'ElmComponent.init({ node: targetNode, flags:' + flags + '});' +
         '}' +
       ');' +
     '});' +
