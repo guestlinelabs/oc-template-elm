@@ -1,7 +1,9 @@
 const extractName = (path) => path.match(/(\w+)\.elm$/)[1];
+const removeJsExtension = (path) => path.replace(/\.(t|j)s?$/, '');
 
-const elmOCProviderTemplate = ({ viewPath }) => `
+const elmOCProviderTemplate = ({ jsPath, viewPath }) => `
   import Component from '${viewPath}';
+  ${jsPath ? `import jsApp from '${removeJsExtension(jsPath)}'` : ''}
 
   function getData(providerProps, parameters, cb) {
     return window.oc.getData({
@@ -33,6 +35,8 @@ const elmOCProviderTemplate = ({ viewPath }) => `
         });
       });
     }
+
+    ${jsPath ? 'jsApp(app);' : ''}
 
     return app;
   }

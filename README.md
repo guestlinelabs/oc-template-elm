@@ -35,7 +35,39 @@ port getData : E.Value -> Cmd msg
 port dataReceiver : (E.Value -> msg) -> Sub msg
 ```
 
+## Custom ports
+
+So what can you do if you want to have extra custom ports? (Maybe to listen to OC events). In that case you can use an additional optional property in the OC object to point to a JavaScript (or TypeScript) file, inside the files property.
+
+```json
+{
+  "oc": {
+    "files": {
+      "data": "src/server.ts",
+      "template": {
+        "src": "src/Main.elm",
+        // You don't have to define this one if not needed.
+        "js": "src/custom.js",
+        "type": "oc-template-elm"
+      }
+    }
+  }
+}
+```
+
+Then, on that file, just `export default` a function that will take your Elm `app` as a parameter, like so:
+
+```js
+/// src/custom.js
+
+export default (app) => {
+  window.oc.events.on('myEvent', (event) => {
+    // Elm will get event data on that port!
+    app.ports.myPortReceiver.send(event.data);
+  });
+};
+```
+
 ## Missing features
 
 - Server side rendering
-- Having JS as the entry point (for ports and custom elements)

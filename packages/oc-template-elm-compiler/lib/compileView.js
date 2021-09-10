@@ -25,10 +25,13 @@ const viewTemplate = require('./viewTemplate');
 
 module.exports = (options, callback) => {
   const viewFileName = options.componentPackage.oc.files.template.src;
+  const jsFileName = options.componentPackage.oc.files.template.js;
   const componentPath = options.componentPath;
   let viewPath = path.join(options.componentPath, viewFileName);
+  let jsPath = jsFileName && path.join(options.componentPath, viewFileName);
   if (process.platform === 'win32') {
     viewPath = viewPath.split('\\').join('\\\\');
+    jsPath = jsPath && jsPath.split('\\').join('\\\\');
   }
   const publishPath = options.publishPath;
   const tempPath = path.join(publishPath, 'temp');
@@ -36,7 +39,7 @@ module.exports = (options, callback) => {
   const componentPackage = options.componentPackage;
   const production = options.production;
 
-  const elmOCProviderContent = elmOCProviderTemplate({ viewPath });
+  const elmOCProviderContent = elmOCProviderTemplate({ viewPath, jsPath });
   const elmOCProviderName = 'elmOCProvider.js';
   const elmOCProviderPath = path.join(tempPath, elmOCProviderName);
 
