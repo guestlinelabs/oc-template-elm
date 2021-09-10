@@ -1,9 +1,10 @@
-module Main exposing (..)
+port module Main exposing (..)
 
 import Browser
 import Css exposing (..)
 import Html.Styled exposing (..)
 import Html.Styled.Attributes exposing (..)
+import Html.Styled.Events exposing (onClick)
 import Json.Decode as D
 import Json.Encode as E
 
@@ -27,7 +28,19 @@ main =
 
 
 type alias Model =
-    { name : String, email : String }
+    { userId : Int, name : String, email : String, age : Maybe Int }
+
+
+type alias DataRequest =
+    { userId : Int }
+
+
+encode : DataRequest -> E.Value
+encode data =
+    E.object
+        [ ( "userId", E.int data.userId )
+        , ( "moreData", E.bool True )
+        ]
 
 
 init : E.Value -> ( Model, Cmd Msg )
@@ -37,9 +50,19 @@ init flags =
             model
 
         Err _ ->
-            { name = "", email = "" }
+            { name = "", email = "", userId = 0, age = Nothing }
     , Cmd.none
     )
+
+
+isJust : Maybe a -> Bool
+isJust data =
+    case data of
+        Nothing ->
+            False
+
+        _ ->
+            True
 
 
 
@@ -47,12 +70,25 @@ init flags =
 
 
 type Msg
-    = NoOp
+    = GetData
+    | Recv E.Value
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
-update _ model =
-    ( model, Cmd.none )
+update msg model =
+    case msg of
+        GetData ->
+            ( model, DataRequest model.userId |> encode |> requestData )
+
+        Recv data ->
+            ( case D.decodeValue decoder data of
+                Ok newModel ->
+                    newModel
+
+                Err _ ->
+                    { name = "", email = "", userId = 0, age = Nothing }
+            , Cmd.none
+            )
 
 
 
@@ -68,6 +104,15 @@ inputStyle =
         , backgroundColor (rgba 255 255 255 0.5)
         , margin (px 10)
         ]
+
+
+htmlIf : Html msg -> Bool -> Html msg
+htmlIf el cond =
+    if cond then
+        el
+
+    else
+        text ""
 
 
 view : Model -> Html Msg
@@ -91,6 +136,17 @@ view model =
             , value model.email
             ]
             []
+        , htmlIf
+            (input
+                [ css [ inputStyle ]
+                , type_ "text"
+                , placeholder "Age"
+                , value model.email
+                ]
+                []
+            )
+            (isJust model.age)
+        , button [ onClick GetData ] [ text "Get more data" ]
         ]
 
 
@@ -100,11 +156,23 @@ view model =
 
 subscriptions : Model -> Sub Msg
 subscriptions _ =
-    Sub.none
+    dataReceiver Recv
 
 
 decoder : D.Decoder Model
 decoder =
-    D.map2 Model
+    D.map4 Model
+        (D.field "userId" D.int)
         (D.field "name" D.string)
         (D.field "email" D.string)
+        (D.maybe (D.field "age" D.int))
+
+
+
+-- PORTS
+
+
+port requestData : E.Value -> Cmd msg
+
+
+port dataReceiver : (E.Value -> msg) -> Sub msg

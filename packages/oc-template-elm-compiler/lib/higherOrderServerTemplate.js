@@ -24,7 +24,7 @@ export const data = (context : any, callback : (error: any, data?: any) => void)
     return callback(null, Object.assign({}, {
       elmComponent: {
         key: "${bundleHashKey}",
-        src: srcPath + "react-component.js",
+        src: srcPath + "elm-component.js",
         flags
       }
     }));

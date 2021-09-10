@@ -1,19 +1,21 @@
 const database = [
-  { name: 'John Doe', email: 'john@doe.com' },
-  { name: 'Jane Doe', email: 'jane@doe.com' }
+  { name: 'John Doe', email: 'john@doe.com', age: 32 },
+  { name: 'Jane Doe', email: 'jane@doe.com', age: 31 }
 ];
 
 async function getUser(userId: number) {
-  return database[userId] || database[0];
+  return database[userId];
 }
 
 export async function data(context: any, callback: (error: any, data: any) => void) {
-  const { userId } = context.params;
-  const { email, name } = await getUser(userId);
+  const { moreData } = context.params;
+  const userId = Number(context.params.userId || 0);
+  const { email, name, age } = await getUser(userId);
 
   return callback(null, {
     userId,
     name,
-    email
+    email,
+    age: moreData && age
   });
 }
