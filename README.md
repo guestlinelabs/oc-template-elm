@@ -23,8 +23,19 @@ $ cd my-awesome-oc
 $ npm install
 ```
 
+## Ports
+
+Your Elm component will have access to two ports by default, if you want to use them.
+
+```elm
+-- To do a oc.getData request passing your properties
+port requestData : E.Value -> Cmd msg
+
+-- A listener after the oc.getData request finishes. It will be up to you to decode errors you may get.
+port dataReceiver : (E.Value -> msg) -> Sub msg
+```
+
 ## Missing features
 
 - Server side rendering
-- Having JS as the entry point (for custom ports)
-- Custom port for getting data from OC server
+- Having JS as the entry point (for ports and custom elements)

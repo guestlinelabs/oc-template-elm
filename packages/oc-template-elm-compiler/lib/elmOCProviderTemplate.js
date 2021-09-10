@@ -21,20 +21,17 @@ const elmOCProviderTemplate = ({ viewPath }) => `
   function init({ node, flags: { _baseUrl, _componentName, _componentVersion, _staticPath, ...flags } }) {
     const app = Component.Elm["${extractName(viewPath)}"].init({ node, flags });
 
-    if (app.ports) {
-      if (app.ports.requestData) {
-        app.ports.requestData.subscribe(parameters => {
-          getData({ _baseUrl, _componentName, _componentVersion }, parameters, (err, data) => {
-            if (err) {
-              console.error(err);
-              return;
-            }
-            else if (app.ports.dataReceiver) {
-              app.ports.dataReceiver.send(data);
-            }
-          });
+    if (app.ports && app.ports.requestData) {
+      app.ports.requestData.subscribe(parameters => {
+        getData({ _baseUrl, _componentName, _componentVersion }, parameters, (err, data) => {
+          if (err && process.env.NODE_ENV !== 'production') {
+            console.error('Error requesting OC Data', err);
+          }
+          if (app.ports.dataReceiver) {
+            app.ports.dataReceiver.send(err || data);
+          }
         });
-      }
+      });
     }
 
     return app;
