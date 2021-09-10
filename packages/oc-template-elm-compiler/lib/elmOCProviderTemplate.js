@@ -25,7 +25,11 @@ const elmOCProviderTemplate = ({ viewPath }) => `
       if (app.ports.requestData) {
         app.ports.requestData.subscribe(parameters => {
           getData({ _baseUrl, _componentName, _componentVersion }, parameters, (err, data) => {
-            if (!err && app.ports.dataReceiver) {
+            if (err) {
+              console.error(err);
+              return;
+            }
+            else if (app.ports.dataReceiver) {
               app.ports.dataReceiver.send(data);
             }
           });
