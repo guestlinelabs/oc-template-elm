@@ -29,7 +29,7 @@ Your Elm component will have access to two ports by default, if you want to use 
 
 ```elm
 -- To do a oc.getData request passing your properties
-port requestData : E.Value -> Cmd msg
+port getData : E.Value -> Cmd msg
 
 -- A listener after the oc.getData request finishes. It will be up to you to decode errors you may get.
 port dataReceiver : (E.Value -> msg) -> Sub msg

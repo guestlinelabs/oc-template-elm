@@ -21,8 +21,8 @@ const elmOCProviderTemplate = ({ viewPath }) => `
   function init({ node, flags: { _baseUrl, _componentName, _componentVersion, _staticPath, ...flags } }) {
     const app = Component.Elm["${extractName(viewPath)}"].init({ node, flags });
 
-    if (app.ports && app.ports.requestData) {
-      app.ports.requestData.subscribe(parameters => {
+    if (app.ports && app.ports.getData) {
+      app.ports.getData.subscribe(parameters => {
         getData({ _baseUrl, _componentName, _componentVersion }, parameters, (err, data) => {
           if (err && process.env.NODE_ENV !== 'production') {
             console.error('Error requesting OC Data', err);

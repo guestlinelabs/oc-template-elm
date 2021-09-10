@@ -78,7 +78,7 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         GetData ->
-            ( model, DataRequest model.userId |> encode |> requestData )
+            ( model, DataRequest model.userId |> encode |> getData )
 
         Recv data ->
             ( case D.decodeValue decoder data of
@@ -174,7 +174,7 @@ decoder =
 -- PORTS
 
 
-port requestData : E.Value -> Cmd msg
+port getData : E.Value -> Cmd msg
 
 
 port dataReceiver : (E.Value -> msg) -> Sub msg
