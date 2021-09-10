@@ -136,16 +136,18 @@ view model =
             , value model.email
             ]
             []
-        , htmlIf
-            (input
-                [ css [ inputStyle ]
-                , type_ "text"
-                , placeholder "Age"
-                , value model.email
-                ]
-                []
-            )
-            (isJust model.age)
+        , case model.age of
+            Nothing ->
+                text ""
+
+            Just age ->
+                input
+                    [ css [ inputStyle ]
+                    , type_ "number"
+                    , placeholder "Age"
+                    , String.fromInt age |> value
+                    ]
+                    []
         , button [ onClick GetData ] [ text "Get more data" ]
         ]
 
